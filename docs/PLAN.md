@@ -791,11 +791,11 @@ Approval readiness: PASS
 ### Implementation Tasks (actualizadas por eng review)
 Reemplazan a las tareas de la revisión CEO donde se indica.
 
-- [ ] **T2 (P1, human: ~4h / CC: ~15min)** — i18n — usar `src/proxy.ts` (no `middleware.ts`), `generateStaticParams` en `app/[locale]/layout.tsx` y `setRequestLocale` en layouts y páginas
+- [x] **T2 (P1, human: ~4h / CC: ~15min)** — i18n — usar `src/proxy.ts` (no `middleware.ts`), `generateStaticParams` en `app/[locale]/layout.tsx` y `setRequestLocale` en layouts y páginas
   - Surfaced by: Scope Challenge #1 y #2
   - Files: src/proxy.ts, src/i18n/routing.ts, src/i18n/request.ts, src/app/[locale]/layout.tsx, messages/es.json, messages/en.json, src/components/ui/LanguageSwitcher.tsx
   - Verify: `next build` marca /es y /en como estáticas (●); E2E de redirección es-CO, en-US, de-DE, cookie
-- [ ] **T3 (P1, human: ~5h / CC: ~15min)** — content — Velite (versión exacta) con YAML `{es, en}` para experiencia, estudios y certificados, MDX es/en para proyectos, helper `localized()`, `s.image()`, URLs, `alt`, slugs únicos, fechas `YYYY-MM` y hook que lista pendientes
+- [x] **T3 (P1, human: ~5h / CC: ~15min)** — content — Velite (versión exacta) con YAML `{es, en}` para experiencia, estudios y certificados, MDX es/en para proyectos, helper `localized()`, `s.image()`, URLs, `alt`, slugs únicos, fechas `YYYY-MM` y hook que lista pendientes
   - Surfaced by: Eng D1, Eng D2, Section 2 #1 y #2
   - Files: velite.config.ts, content/experience.yaml, content/education.yaml, content/certifications.yaml, content/projects/*.es.mdx, content/projects/*.en.mdx, tests/content.test.ts, tests/fixtures/**
   - Verify: Vitest con fixtures inválidos hace fallar `velite build` con archivo + campo

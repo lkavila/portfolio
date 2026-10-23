@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "title": "Kener Avila · Full-Stack Developer & AI Engineer",
+    "description": "Kener Avila's portfolio: professional experience, projects, education and certifications."
+  },
+  "common": {
+    "skipToContent": "Skip to content"
+  },
+  "hero": {
+    "name": "Kener Avila",
+    "role": "Full-Stack Developer & AI Engineer",
+    "cv": "Download CV",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  },
+  "sections": {
+    "navLabel": "Sections",
+    "experience": "Professional experience",
+    "projects": "Personal and academic projects",
+    "education": "Education",
+    "certifications": "Certifications"
+  },
+  "languageSwitcher": {
+    "label": "Change language",
+    "es": "Español",
+    "en": "English"
+  }
+}

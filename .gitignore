@@ -49,3 +49,11 @@ next-env.d.ts
 
 # gstack
 /.gstack/tmp
+
+# playwright
+/test-results
+/playwright-report
+/blob-report
+
+# fixtures de contenido generados por los tests
+/tests/.tmp
