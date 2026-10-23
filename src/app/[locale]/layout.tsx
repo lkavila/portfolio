@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { locale as rootLocale } from 'next/root-params'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
+import { RevealObserver } from '@/components/ui/RevealObserver'
 import { routing } from '@/i18n/routing'
 import { siteUrl } from '@/lib/site'
 import '../globals.css'
@@ -45,10 +46,23 @@ export default async function LocaleLayout({ children }: LayoutProps<'/[locale]'
   if (!hasLocale(routing.locales, locale)) notFound()
 
   return (
-    <html lang={locale} className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
+    <html
+      lang={locale}
+      data-scroll-behavior="smooth"
+      // El script de <head> agrega la clase "js" antes de hidratar.
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    >
+      <head>
+        {/* Antes de pintar: los reveals solo ocultan contenido si hay JS. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
+      <body className="flex min-h-full flex-col bg-bg font-sans text-fg">
         {/* Los mensajes no viajan al cliente: las islas reciben sus textos por props. */}
-        <NextIntlClientProvider messages={null}>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider messages={null}>
+          {children}
+          <RevealObserver />
+        </NextIntlClientProvider>
       </body>
     </html>
   )

@@ -1,5 +1,6 @@
 import type { Locale } from 'next-intl'
-import { certifications, education, experience, projects } from '#site/content'
+import { certifications, education, experience, profile, projects } from '#site/content'
+import { type SectionKey, sectionKeys } from '@/i18n/sections'
 
 // Acceso al contenido ya validado por Velite: elige el idioma y ordena.
 // Las secciones de la página leen solo de aquí.
@@ -12,6 +13,21 @@ export function compareByRecency(a: Dated, b: Dated): number {
   return end(b).localeCompare(end(a)) || (b.start ?? '').localeCompare(a.start ?? '')
 }
 
+export function getProfile(locale: Locale) {
+  return { ...profile, role: profile.role[locale] }
+}
+
+/** Secciones con al menos un ítem: una sección vacía no se renderiza ni aparece en la barra. */
+export function getAvailableSections(locale: Locale): SectionKey[] {
+  const counts: Record<SectionKey, number> = {
+    experience: experience.length,
+    projects: getProjects(locale).length,
+    education: education.length,
+    certifications: certifications.length
+  }
+  return sectionKeys.filter((key) => counts[key] > 0)
+}
+
 export function getExperience(locale: Locale) {
   return experience
     .map((item) => ({
@@ -19,14 +35,20 @@ export function getExperience(locale: Locale) {
       role: item.role[locale],
       location: item.location?.[locale],
       summary: item.summary[locale],
-      highlights: item.highlights[locale]
+      highlights: item.highlights[locale],
+      lesson: item.lesson?.[locale]
     }))
     .sort(compareByRecency)
 }
 
 export function getEducation(locale: Locale) {
   return education
-    .map((item) => ({ ...item, degree: item.degree[locale], description: item.description?.[locale] }))
+    .map((item) => ({
+      ...item,
+      degree: item.degree[locale],
+      description: item.description?.[locale],
+      lesson: item.lesson?.[locale]
+    }))
     .sort(compareByRecency)
 }
 

@@ -32,6 +32,10 @@ Cuerpo ${lang}
 
 async function validFiles(): Promise<Files> {
   return {
+    'profile.yaml': `name: Kener
+role: { es: Desarrollador, en: Developer }
+github: https://github.com/kener
+`,
     'experience.yaml': `- company: ACME
   role: { es: Desarrollador, en: Developer }
   start: 2023-01
@@ -177,12 +181,19 @@ describe('reglas entre documentos', () => {
 
   it('findPending lista campos reservados vacíos una sola vez por proyecto', () => {
     const pending = findPending({
-      experience: [],
-      education: [],
+      profile: { github: 'https://x' },
+      experience: [{ company: 'ACME' }, { company: 'Con imagen', image: {} }],
+      education: [{ institution: 'Universidad' }],
       certifications: [{ name: 'Sin enlace' }, { name: 'Con archivo', file: '/static/c.pdf' }],
       projects: [project('a', 'es', { github: 'https://x' }), project('a', 'en', { github: 'https://x' })]
     })
-    expect(pending).toEqual(['projects/a: images, demo', 'certifications/Sin enlace: verifyUrl o file'])
+    expect(pending).toEqual([
+      'profile: linkedin, email',
+      'experience/ACME: image',
+      'education/Universidad: image',
+      'projects/a: images, demo',
+      'certifications/Sin enlace: verifyUrl o file'
+    ])
   })
 })
 

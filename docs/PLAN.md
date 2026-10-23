@@ -430,7 +430,7 @@ Supuesto de esfuerzo: scaffolding ~100x, features ~30x, tests ~50x (humano ÷ CC
   - Surfaced by: Section 2 — GAP de referencias (D8); design doc regla de traducción
   - Files: src/content/schema.ts, archivo de config del content layer (Velite o content-collections, lo decide /plan-eng-review), content/** (ítems de ejemplo)
   - Verify: Vitest con fixtures inválidos (falta traducción, slug duplicado, imagen inexistente, URL mala, falta alt) que deben fallar con archivo + campo
-- [ ] **T4 (P1, human: ~10h / CC: ~30min)** — ui — Página por idioma: Hero, SectionNav, Section, Media, Reveal y las 4 secciones con filtro de proyectos
+- [x] **T4 (P1, human: ~10h / CC: ~30min)** — ui — Página por idioma: Hero, SectionNav, Section, Media, Reveal y las 4 secciones con filtro de proyectos
   - Surfaced by: D2; Section 4 casos borde; Section 7 presupuesto; Section 11 accesibilidad
   - Files: src/app/[locale]/page.tsx, src/app/[locale]/layout.tsx, src/components/sections/*.tsx, src/components/ui/*.tsx
   - Verify: E2E barra (clic, ancla directa, teclado, sección activa), filtro con `?filtro=`, sin JS, reduced motion, sin "pendiente" con VERCEL_ENV=production

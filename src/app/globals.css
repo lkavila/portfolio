@@ -1,26 +1,71 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Paleta de la opción "C · Narrativa inmersiva" (docs/design/style-board.html). */
+@theme {
+  --color-bg: #07080c;
+  --color-fg: #f2f3f7;
+  --color-muted: #9ca1b3;
+  --color-soft: #a7acbd;
+  --color-subtle: #7c8299;
+  --color-strong: #d6dae6;
+  --color-card: #0e1018;
+  --color-chip: #141724;
+  --color-raised: #1a1d2b;
+  --color-line: #1c1f2c;
+  --color-line-strong: #2a2e40;
+  --color-slot: #343a52;
+  --color-accent: #a78bfa;
+  --color-accent-2: #60a5fa;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  color-scheme: dark;
+  background: var(--color-bg);
+  color: var(--color-fg);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:focus-visible {
+  outline: 2px solid var(--color-accent-2);
+  outline-offset: 3px;
+}
+
+/* Reveals: solo se ocultan cuando JS ya cargó (clase "js" en <html>), así el
+   HTML sin JS se ve completo. Sin movimiento si el usuario lo pide. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    transition:
+      opacity 0.7s ease,
+      transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .js [data-reveal]:not([data-revealed]) {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+/* Lo que solo funciona con JS (filtro de proyectos) no se muestra sin JS. */
+html:not(.js) [data-requires-js] {
+  display: none;
+}
+
+/* Filtro de proyectos: el contenedor guarda el filtro activo y CSS oculta el resto. */
+[data-filter="personal"] [data-kind]:not([data-kind="personal"]),
+[data-filter="academic"] [data-kind]:not([data-kind="academic"]) {
+  display: none;
+}
+
+/* Recuadro "pendiente" (solo dev/preview): marca dónde irá una imagen o enlace real. */
+.slot-pending {
+  border: 1.5px dashed var(--color-slot);
+  background: repeating-linear-gradient(45deg, #0b0d14 0 12px, #0e1019 12px 24px);
+  color: var(--color-subtle);
 }

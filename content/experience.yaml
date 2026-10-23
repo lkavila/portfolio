@@ -19,4 +19,7 @@
       - Logro de ejemplo con un resultado medible.
     en:
       - Example achievement with a measurable result.
+  lesson:
+    es: Aprendizaje de ejemplo en una frase.
+    en: Example lesson in one sentence.
   stack: [TypeScript, Next.js, PostgreSQL]

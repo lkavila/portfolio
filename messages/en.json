@@ -4,21 +4,62 @@
     "description": "Kener Avila's portfolio: professional experience, projects, education and certifications."
   },
   "common": {
-    "skipToContent": "Skip to content"
+    "skipToContent": "Skip to content",
+    "pending": "pending",
+    "present": "present",
+    "opensInNewTab": "(opens in a new tab)"
   },
   "hero": {
-    "name": "Kener Avila",
-    "role": "Full-Stack Developer & AI Engineer",
     "cv": "Download CV",
     "github": "GitHub",
-    "linkedin": "LinkedIn"
+    "linkedin": "LinkedIn",
+    "scrollHint": "Scroll"
   },
   "sections": {
     "navLabel": "Sections",
     "experience": "Professional experience",
+    "experienceShort": "Experience",
+    "experienceIntro": "Every job, with what I built and what I learned.",
     "projects": "Personal and academic projects",
+    "projectsShort": "Projects",
+    "projectsIntro": "The problem, my contribution, the result and what I learned. Each one opens its case study.",
     "education": "Education",
-    "certifications": "Certifications"
+    "educationShort": "Education",
+    "educationIntro": "Academic background and what each stage left me.",
+    "certifications": "Certifications",
+    "certificationsShort": "Certifications",
+    "certificationsIntro": "Verifiable on each issuer's website."
+  },
+  "experience": {
+    "image": "Job image",
+    "companySite": "Company website"
+  },
+  "projects": {
+    "filterLabel": "Filter projects",
+    "all": "All",
+    "personal": "Personal",
+    "academic": "Academic",
+    "kindPersonal": "Personal",
+    "kindAcademic": "Academic",
+    "image": "Project screenshot",
+    "github": "GitHub",
+    "demo": "Demo",
+    "caseStudy": "View case study"
+  },
+  "education": {
+    "image": "Image or logo"
+  },
+  "certifications": {
+    "verify": "Verify",
+    "viewFile": "View certificate",
+    "verifyOrFile": "Verification link"
+  },
+  "lesson": {
+    "label": "What I learned"
+  },
+  "footer": {
+    "contact": "Contact",
+    "email": "Email"
   },
   "languageSwitcher": {
     "label": "Change language",

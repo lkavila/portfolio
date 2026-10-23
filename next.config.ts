@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
+  images: {
+    formats: ["image/avif", "image/webp"],
+    // Solo se optimizan las imágenes que publica Velite (D8: validadas en el build).
+    localPatterns: [{ pathname: "/static/**", search: "" }],
+  },
   turbopack: {
     rules: {
       "*.css": {

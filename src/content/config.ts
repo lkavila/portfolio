@@ -22,6 +22,23 @@ const url = s
 
 const fileNamePattern = /^([a-z0-9]+(?:-[a-z0-9]+)*)\.(es|en)$/
 
+/** Imagen de un ítem YAML: el alt se escribe en los dos idiomas. */
+const localizedImage = s.object({ src: s.image(), alt: localized(text) })
+
+const profile = defineCollection({
+  name: 'Profile',
+  pattern: 'profile.yaml',
+  single: true,
+  schema: s.object({
+    name: text,
+    role: localized(text),
+    // Campos reservados: si faltan, "pendiente" en dev/preview y ocultos en producción.
+    github: url.optional(),
+    linkedin: url.optional(),
+    email: s.string().email('email inválido').optional()
+  })
+})
+
 const experience = defineCollection({
   name: 'Experience',
   pattern: 'experience.yaml',
@@ -34,8 +51,10 @@ const experience = defineCollection({
       end: month.or(s.literal('present')),
       summary: localized(text),
       highlights: localized(s.array(text)).default({ es: [], en: [] }),
+      lesson: localized(text).optional(),
       stack: s.array(text).default([]),
-      url: url.optional()
+      url: url.optional(),
+      image: localizedImage.optional()
     })
     .refine((item) => item.end === 'present' || item.end >= item.start, {
       message: 'end no puede ser anterior a start',
@@ -53,7 +72,9 @@ const education = defineCollection({
       start: month,
       end: month.or(s.literal('present')),
       description: localized(text).optional(),
-      url: url.optional()
+      lesson: localized(text).optional(),
+      url: url.optional(),
+      image: localizedImage.optional()
     })
     .refine((item) => item.end === 'present' || item.end >= item.start, {
       message: 'end no puede ser anterior a start',
@@ -85,6 +106,7 @@ const projects = defineCollection({
       kind: s.enum(['personal', 'academic']),
       date: month,
       stack: s.array(text).default([]),
+      lesson: text.optional(),
       github: url.optional(),
       demo: url.optional(),
       images: s.array(s.object({ src: s.image(), alt: text })).default([]),
@@ -105,11 +127,12 @@ const projects = defineCollection({
     })
 })
 
-export const collections = { experience, education, certifications, projects }
+export const collections = { profile, experience, education, certifications, projects }
 
 type Data = {
-  experience: { company: string; url?: string }[]
-  education: { institution: string; url?: string }[]
+  profile: { github?: string; linkedin?: string; email?: string }
+  experience: { company: string; image?: unknown }[]
+  education: { institution: string; image?: unknown }[]
   certifications: { name: string; verifyUrl?: string; file?: string }[]
   projects: { slug: string; locale: string; images: unknown[]; github?: string; demo?: string }[]
 }
@@ -128,6 +151,10 @@ export function findMissingLocales(projects: Data['projects']): string[] {
 /** Campos reservados que siguen vacíos: se muestran como "pendiente" en dev/preview. */
 export function findPending(data: Data): string[] {
   const pending: string[] = []
+  const profileMissing = (['github', 'linkedin', 'email'] as const).filter((k) => !data.profile[k])
+  if (profileMissing.length) pending.push(`profile: ${profileMissing.join(', ')}`)
+  for (const e of data.experience) if (!e.image) pending.push(`experience/${e.company}: image`)
+  for (const e of data.education) if (!e.image) pending.push(`education/${e.institution}: image`)
   for (const p of data.projects.filter((p) => p.locale === 'es')) {
     const missing = [
       p.images.length === 0 && 'images',

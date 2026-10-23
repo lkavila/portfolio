@@ -4,21 +4,62 @@
     "description": "Portafolio de Kener Avila: experiencia profesional, proyectos, estudios y certificaciones."
   },
   "common": {
-    "skipToContent": "Saltar al contenido"
+    "skipToContent": "Saltar al contenido",
+    "pending": "pendiente",
+    "present": "hoy",
+    "opensInNewTab": "(se abre en otra pestaña)"
   },
   "hero": {
-    "name": "Kener Avila",
-    "role": "Full-Stack Developer & AI Engineer",
     "cv": "Descargar CV",
     "github": "GitHub",
-    "linkedin": "LinkedIn"
+    "linkedin": "LinkedIn",
+    "scrollHint": "Desliza"
   },
   "sections": {
     "navLabel": "Secciones",
     "experience": "Experiencia profesional",
+    "experienceShort": "Experiencia",
+    "experienceIntro": "Cada trabajo, con lo que construí y lo que aprendí.",
     "projects": "Proyectos personales y académicos",
+    "projectsShort": "Proyectos",
+    "projectsIntro": "El problema, mi aporte, el resultado y lo que aprendí. Cada uno abre su caso de estudio.",
     "education": "Estudios",
-    "certifications": "Certificaciones"
+    "educationShort": "Estudios",
+    "educationIntro": "Formación académica y lo que me dejó cada etapa.",
+    "certifications": "Certificaciones",
+    "certificationsShort": "Certificaciones",
+    "certificationsIntro": "Verificables en el sitio de cada emisor."
+  },
+  "experience": {
+    "image": "Imagen del trabajo",
+    "companySite": "Sitio de la empresa"
+  },
+  "projects": {
+    "filterLabel": "Filtrar proyectos",
+    "all": "Todos",
+    "personal": "Personales",
+    "academic": "Académicos",
+    "kindPersonal": "Personal",
+    "kindAcademic": "Académico",
+    "image": "Captura del proyecto",
+    "github": "GitHub",
+    "demo": "Demo",
+    "caseStudy": "Ver caso de estudio"
+  },
+  "education": {
+    "image": "Imagen o logo"
+  },
+  "certifications": {
+    "verify": "Verificar",
+    "viewFile": "Ver certificado",
+    "verifyOrFile": "Enlace de verificación"
+  },
+  "lesson": {
+    "label": "Lo que aprendí"
+  },
+  "footer": {
+    "contact": "Contacto",
+    "email": "Email"
   },
   "languageSwitcher": {
     "label": "Cambiar idioma",
