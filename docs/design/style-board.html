@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Style Board · Portafolio</title>
+<!--
+  Tablero de estilos para comparar 3 direcciones visuales del portafolio.
+  Contenido de ejemplo (proyectos y fechas son placeholders, no datos reales).
+  Las animaciones de scroll usan IntersectionObserver y se desactivan con
+  prefers-reduced-motion, igual que en el sitio real.
+-->
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif; background: #111; color: #eee; }
+  img { display: block; max-width: 100%; }
+
+  /* Selector de estilos fijo */
+  .switcher { position: fixed; top: 12px; left: 50%; transform: translateX(-50%); z-index: 100;
+    display: flex; gap: 4px; padding: 4px; border-radius: 12px; background: rgba(20,20,20,.85);
+    backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.12); }
+  .switcher button { border: 0; background: transparent; color: #bbb; font: 600 13px/1 system-ui;
+    padding: 9px 14px; border-radius: 9px; cursor: pointer; }
+  .switcher button[aria-selected="true"] { background: #fff; color: #111; }
+  .style { display: none; min-height: 100vh; }
+  .style.active { display: block; }
+
+  /* Reveal genérico al hacer scroll */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal.d1 { transition-delay: .08s } .reveal.d2 { transition-delay: .16s } .reveal.d3 { transition-delay: .24s }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+  .note { font-size: 12px; opacity: .6; margin-top: 10px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* ============ A) BENTO OSCURO ============ */
+  #a { background: #0A0B0E; color: #E7E9EE; }
+  #a .hero { position: relative; padding: 140px 0 80px; overflow: hidden; }
+  #a .hero::before { content: ""; position: absolute; inset: -30% -10% auto; height: 520px;
+    background: radial-gradient(40% 50% at 30% 40%, rgba(88,110,255,.35), transparent 70%),
+                radial-gradient(35% 45% at 70% 30%, rgba(0,190,170,.22), transparent 70%); filter: blur(20px); }
+  #a .hero > * { position: relative; }
+  #a .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: #A9B0BF;
+    border: 1px solid #23262E; border-radius: 8px; padding: 6px 10px; background: #12141A; }
+  #a .dot { width: 8px; height: 8px; border-radius: 50%; background: #2ECC71; }
+  #a h1 { font-size: clamp(40px, 6vw, 72px); line-height: 1.02; letter-spacing: -.03em; margin: 22px 0 18px; font-weight: 700; }
+  #a h1 span { background: linear-gradient(90deg, #8EA2FF, #5FE3D0); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  #a .lead { font-size: 18px; color: #A9B0BF; max-width: 560px; }
+  #a .ctas { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+  #a .btn { padding: 12px 18px; border-radius: 10px; font-weight: 600; font-size: 14px; text-decoration: none; }
+  #a .btn.p { background: #E7E9EE; color: #0A0B0E; } #a .btn.s { border: 1px solid #2A2E38; color: #E7E9EE; }
+  #a h2 { font-size: 28px; letter-spacing: -.02em; margin: 80px 0 20px; }
+  #a .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  #a .card { background: #12141A; border: 1px solid #1F222A; border-radius: 18px; padding: 22px; overflow: hidden; }
+  #a .card:hover { border-color: #3A4060; }
+  #a .c-big { grid-column: span 4; grid-row: span 2; } #a .c-sm { grid-column: span 2; } #a .c-md { grid-column: span 3; }
+  #a .shot { height: 180px; border-radius: 12px; margin-bottom: 16px;
+    background: linear-gradient(135deg, #1B2140, #0F2A2A); border: 1px solid #252A3A; }
+  #a .c-big .shot { height: 300px; }
+  #a .card h3 { font-size: 18px; margin-bottom: 6px; } #a .card p { color: #A9B0BF; font-size: 14px; }
+  #a .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+  #a .tags span { font-size: 12px; color: #C9CEDA; background: #1A1D25; border-radius: 6px; padding: 4px 8px; }
+  #a .learn { margin-top: 12px; font-size: 13px; color: #8EA2FF; }
+  #a .stat { font-size: 40px; font-weight: 700; letter-spacing: -.02em; }
+  #a footer { padding: 100px 0 60px; color: #6B7280; font-size: 13px; }
+
+  /* ============ B) EDITORIAL CLARO ============ */
+  #b { background: #F7F7F5; color: #16171A; }
+  #b .hero { padding: 150px 0 60px; border-bottom: 1px solid #DDDDD8; }
+  #b .kicker { font-size: 15px; color: #5B5E66; }
+  #b h1 { font-size: clamp(52px, 9vw, 128px); line-height: .92; letter-spacing: -.045em; font-weight: 800; margin: 18px 0 28px; }
+  #b h1 em { font-style: normal; color: #2348FF; }
+  #b .row2 { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: end; }
+  #b .lead { font-size: 20px; max-width: 520px; color: #33363D; }
+  #b .btn { background: #16171A; color: #fff; padding: 14px 20px; border-radius: 4px; font-weight: 600; text-decoration: none; }
+  #b h2 { font-size: 14px; font-weight: 700; color: #5B5E66; margin: 70px 0 10px; }
+  #b .proj { display: grid; grid-template-columns: 80px 1fr 1fr 140px; gap: 24px; align-items: center;
+    padding: 30px 0; border-bottom: 1px solid #DDDDD8; position: relative; cursor: pointer; }
+  #b .proj .yr { color: #8A8D94; font-size: 15px; }
+  #b .proj h3 { font-size: clamp(26px, 3.4vw, 44px); letter-spacing: -.03em; font-weight: 700; transition: color .2s, transform .3s; }
+  #b .proj:hover h3 { color: #2348FF; transform: translateX(8px); }
+  #b .proj p { color: #4A4D55; font-size: 15px; }
+  #b .proj .arrow { text-align: right; font-size: 28px; }
+  #b .peek { position: absolute; right: 180px; top: 50%; width: 260px; height: 170px; border-radius: 6px;
+    background: linear-gradient(135deg, #2348FF, #9DB1FF); transform: translateY(-50%) scale(.85) rotate(-3deg);
+    opacity: 0; pointer-events: none; transition: opacity .25s, transform .35s; box-shadow: 0 20px 40px rgba(0,0,0,.18); }
+  #b .proj:hover .peek { opacity: 1; transform: translateY(-50%) scale(1) rotate(-3deg); }
+  #b .certs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid #DDDDD8; margin-top: 10px; }
+  #b .cert { padding: 28px 24px 28px 0; border-right: 1px solid #DDDDD8; }
+  #b .cert:last-child { border-right: 0; }
+  #b .cert b { display: block; font-size: 22px; letter-spacing: -.02em; margin-bottom: 6px; }
+  #b .cert span { color: #5B5E66; font-size: 14px; }
+  #b footer { padding: 110px 0 60px; font-size: clamp(36px, 6vw, 80px); font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+  #b footer a { color: #2348FF; text-decoration: none; }
+
+  /* ============ C) NARRATIVA INMERSIVA ============ */
+  #c { background: #07080C; color: #F2F3F7; }
+  #c .hero { height: 92vh; display: grid; place-items: center; text-align: center; position: relative; overflow: hidden; }
+  #c .ctas { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+  #c .btn { padding: 12px 18px; border-radius: 10px; font-weight: 600; font-size: 14px; text-decoration: none; color: #F2F3F7; border: 1px solid #2A2E40; background: rgba(14,16,24,.6); }
+  #c .btn.p { background: #F2F3F7; color: #07080C; border-color: #F2F3F7; }
+  /* Barra de secciones: fija al hacer scroll, cada enlace salta a su sección */
+  #c .secnav { position: sticky; top: 62px; z-index: 50; display: flex; gap: 4px; justify-content: center;
+    padding: 10px 16px; background: rgba(7,8,12,.78); backdrop-filter: blur(12px);
+    border-top: 1px solid #161925; border-bottom: 1px solid #161925; overflow-x: auto; }
+  #c .secnav a { flex: none; color: #9CA1B3; text-decoration: none; font-size: 14px; font-weight: 600; padding: 9px 14px; border-radius: 10px; transition: color .2s, background .2s; }
+  #c .secnav a:hover { color: #fff; }
+  #c .secnav a.on { color: #fff; background: #1A1D2B; }
+  #c .sec { scroll-margin-top: 120px; padding: 110px 0 40px; }
+  #c .sec-head h2 { font-size: clamp(34px, 4.6vw, 60px); letter-spacing: -.035em; line-height: 1.02; }
+  #c .sec-head p { color: #9CA1B3; margin-top: 12px; max-width: 560px; }
+  /* Espacio reservado: aquí irán tus imágenes y enlaces reales */
+  #c .slot { border: 1.5px dashed #343A52; display: grid; place-items: center; text-align: center; color: #6E7590; font-size: 13px;
+    background: repeating-linear-gradient(45deg, #0B0D14 0 12px, #0E1019 12px 24px); }
+  #c .links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  #c .links a { font-size: 13px; color: #C9CEDA; text-decoration: none; border: 1px solid #2A2E40; border-radius: 8px; padding: 6px 10px; }
+  #c .links a.pending { border-style: dashed; color: #7C8299; }
+  #c .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  #c .tags span { font-size: 12px; color: #C9CEDA; background: #141724; border-radius: 6px; padding: 4px 8px; }
+  /* Proyectos */
+  #c .filters { display: flex; gap: 6px; margin: 28px 0 24px; flex-wrap: wrap; }
+  #c .filters button { border: 1px solid #2A2E40; background: transparent; color: #9CA1B3; font: 600 13px/1 system-ui; padding: 9px 13px; border-radius: 10px; cursor: pointer; }
+  #c .filters button.on { background: #F2F3F7; color: #07080C; border-color: #F2F3F7; }
+  #c .pgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  #c .pcard { background: #0E1018; border: 1px solid #1C1F2C; border-radius: 22px; overflow: hidden; }
+  #c .pcard .slot { aspect-ratio: 16/9; border-width: 0 0 1.5px 0; }
+  #c .pcard .body { padding: 20px 22px 24px; }
+  #c .kind { font-size: 12px; font-weight: 700; color: #A78BFA; }
+  #c .pcard h3 { font-size: 22px; letter-spacing: -.02em; margin: 6px 0 6px; }
+  #c .pcard p { color: #A7ACBD; font-size: 15px; }
+  #c .pcard.hide { display: none; }
+  /* Estudios: línea de tiempo vertical */
+  #c .timeline { position: relative; margin-top: 40px; padding-left: 34px; }
+  #c .timeline::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(#60A5FA, #A78BFA 60%, transparent); }
+  #c .titem { position: relative; padding: 0 0 46px; }
+  #c .titem::before { content: ""; position: absolute; left: -33px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: #07080C; border: 2px solid #60A5FA; }
+  #c .titem .row { display: grid; grid-template-columns: 1fr 220px; gap: 24px; align-items: start; }
+  #c .titem .slot { aspect-ratio: 4/3; border-radius: 14px; }
+  #c .titem h3 { font-size: 24px; letter-spacing: -.02em; margin: 4px 0 6px; }
+  #c .titem p { color: #A7ACBD; }
+  /* Certificaciones */
+  #c .issuer { font-size: 15px; font-weight: 700; color: #D6DAE6; margin: 40px 0 14px; }
+  #c .cgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  #c .ccard { background: #0E1018; border: 1px solid #1C1F2C; border-radius: 18px; overflow: hidden; }
+  #c .ccard .slot { aspect-ratio: 4/3; border-width: 0 0 1.5px 0; }
+  #c .ccard .body { padding: 16px 18px 20px; }
+  #c .ccard h3 { font-size: 17px; margin-bottom: 4px; }
+  #c .ccard .meta { font-size: 13px; color: #7C8299; }
+  #c .ccard .learn { font-size: 14px; }
+  #c .aurora { position: absolute; inset: 0; background:
+      conic-gradient(from 200deg at 50% 60%, #1E3A8A, #6D28D9, #0EA5A4, #1E3A8A); filter: blur(90px); opacity: .45;
+      animation: spin 24s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg) scale(1.2); } }
+  @media (prefers-reduced-motion: reduce) { #c .aurora { animation: none; } }
+  #c .hero-in { position: relative; padding: 0 24px; }
+  #c h1 { font-size: clamp(44px, 7.5vw, 104px); line-height: 1; letter-spacing: -.04em; font-weight: 700; }
+  #c .lead { font-size: 19px; color: #B6BAC8; margin-top: 20px; }
+  #c .scroll-hint { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); font-size: 13px; color: #8A8FA0; }
+  /* Línea de tiempo con columna fija */
+  #c .story { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; padding: 120px 0; }
+  #c .sticky { position: sticky; top: 30vh; align-self: start; }
+  #c .sticky h2 { font-size: clamp(32px, 4vw, 52px); letter-spacing: -.03em; line-height: 1.05; }
+  #c .sticky p { color: #9CA1B3; margin-top: 14px; }
+  #c .progress { height: 3px; background: #1C1F2A; border-radius: 3px; margin-top: 28px; overflow: hidden; }
+  #c .progress i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #60A5FA, #A78BFA); }
+  #c .step { min-height: 70vh; display: flex; flex-direction: column; justify-content: center; }
+  #c .media { height: 300px; border-radius: 24px; transform: scale(.88); opacity: .3; transition: transform .8s cubic-bezier(.2,.7,.2,1), opacity .8s; }
+  #c .step.in .media { transform: scale(1); opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { #c .media { transform: none; opacity: 1; transition: none; } }
+  #c .step .when { color: #A78BFA; font-size: 14px; margin-top: 22px; }
+  #c .step h3 { font-size: 26px; margin: 6px 0 8px; letter-spacing: -.02em; }
+  #c .step p { color: #A7ACBD; }
+  #c .step .learn { margin-top: 12px; padding: 12px 14px; border-left: 2px solid #60A5FA; background: #0E1018; color: #D6DAE6; font-size: 15px; }
+  #c footer { padding: 120px 0 80px; text-align: center; color: #8A8FA0; }
+
+  .ref { padding: 18px 24px; font-size: 13px; text-align: center; }
+  #a .ref { color: #6B7280; } #b .ref { color: #5B5E66; } #c .ref { color: #8A8FA0; }
+
+  @media (max-width: 760px) {
+    #a .c-big, #a .c-sm, #a .c-md { grid-column: span 6; }
+    #b .proj { grid-template-columns: 1fr; gap: 6px; } #b .proj .arrow, #b .peek { display: none; }
+    #b .certs { grid-template-columns: 1fr; } #b .cert { border-right: 0; border-bottom: 1px solid #DDDDD8; }
+    #c .story { grid-template-columns: 1fr; } #c .sticky { position: static; }
+    #c .secnav { justify-content: flex-start; }
+    #c .pgrid, #c .cgrid { grid-template-columns: 1fr; }
+    #c .titem .row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="switcher" role="tablist" aria-label="Estilos">
+  <button role="tab" aria-selected="false" data-t="a">A · Bento oscuro</button>
+  <button role="tab" aria-selected="false" data-t="b">B · Editorial claro</button>
+  <button role="tab" aria-selected="true" data-t="c">C · Narrativa inmersiva ✓</button>
+</nav>
+
+<!-- A) BENTO OSCURO: referencias Linear, Vercel, Eliot Besson. Denso, escaneable, "producto tech". -->
+<section id="a" class="style">
+  <div class="wrap">
+    <header class="hero">
+      <span class="badge reveal"><span class="dot"></span> Disponible para nuevas oportunidades</span>
+      <h1 class="reveal d1">Construyo productos web<br><span>de punta a punta.</span></h1>
+      <p class="lead reveal d2">Full-Stack Developer · Backend · AI Engineer. Next.js, Node, Python y LLMs en producción.</p>
+      <div class="ctas reveal d3"><a class="btn p" href="#">Ver proyectos</a><a class="btn s" href="#">Descargar CV</a></div>
+    </header>
+
+    <h2 class="reveal">Proyectos destacados</h2>
+    <div class="bento">
+      <article class="card c-big reveal"><div class="shot"></div>
+        <h3>Asistente RAG para soporte</h3><p>Responde tickets usando la base de conocimiento de la empresa.</p>
+        <div class="tags"><span>Next.js</span><span>Python</span><span>Claude API</span></div>
+        <p class="learn">Aprendí: evaluar respuestas con un set de pruebas antes de cambiar prompts.</p></article>
+      <article class="card c-sm reveal d1"><div class="stat">3</div><p>años construyendo software</p></article>
+      <article class="card c-sm reveal d2"><div class="stat">B2</div><p>Inglés · Linguaskill (Cambridge)</p></article>
+      <article class="card c-md reveal"><div class="shot"></div><h3>API de pagos</h3><p>NestJS + PostgreSQL, idempotencia y webhooks.</p></article>
+      <article class="card c-md reveal d1"><div class="shot"></div><h3>Dashboard de ventas</h3><p>React + Tailwind, gráficas en tiempo real.</p></article>
+      <article class="card c-sm reveal"><h3>Certiport</h3><p>Certificaciones oficiales</p></article>
+      <article class="card c-sm reveal d1"><h3>Udemy</h3><p>12 cursos completados</p></article>
+      <article class="card c-sm reveal d2"><h3>Estudios</h3><p>Ingeniería de Sistemas</p></article>
+    </div>
+    <footer>Ejemplo · contenido placeholder</footer>
+  </div>
+  <p class="ref">Fuerte en: escaneo rápido de 30 s, look "producto tech". Riesgo: muy común en 2026, hay que darle identidad propia.</p>
+</section>
+
+<!-- B) EDITORIAL CLARO: tipografía gigante, filas tipo índice con preview al pasar el mouse. Referencia: Mees Verberne. -->
+<section id="b" class="style">
+  <div class="wrap">
+    <header class="hero">
+      <p class="kicker reveal">Full-Stack · Backend · AI Engineer</p>
+      <h1 class="reveal d1">Kener<br>Avila <em>→</em></h1>
+      <div class="row2 reveal d2">
+        <p class="lead">Desarrollo sistemas web completos y los conecto con IA. Cada proyecto aquí cuenta qué problema resolví y qué aprendí.</p>
+        <a class="btn" href="#">Descargar CV</a>
+      </div>
+    </header>
+
+    <h2 class="reveal">Trabajo seleccionado</h2>
+    <div class="proj reveal"><span class="yr">2026</span><h3>Asistente RAG</h3><p>Soporte automatizado con LLMs y evaluación continua.</p><span class="arrow">↗</span><span class="peek"></span></div>
+    <div class="proj reveal"><span class="yr">2025</span><h3>API de pagos</h3><p>NestJS, PostgreSQL, webhooks idempotentes.</p><span class="arrow">↗</span><span class="peek"></span></div>
+    <div class="proj reveal"><span class="yr">2025</span><h3>Dashboard de ventas</h3><p>React, Tailwind y datos en tiempo real.</p><span class="arrow">↗</span><span class="peek"></span></div>
+
+    <h2 class="reveal">Certificaciones</h2>
+    <div class="certs">
+      <div class="cert reveal"><b>Linguaskill</b><span>Cambridge English · nivel B2</span></div>
+      <div class="cert reveal d1"><b>Certiport</b><span>Certificación oficial</span></div>
+      <div class="cert reveal d2"><b>Udemy</b><span>12 cursos · ver todos</span></div>
+    </div>
+    <footer class="reveal">¿Hablamos?<br><a href="#">hola@tudominio.dev</a></footer>
+  </div>
+  <p class="ref">Fuerte en: personalidad y lectura, se siente hecho a mano. Riesgo: menos "wow" técnico si no se cuidan los detalles.</p>
+</section>
+
+<!-- C) NARRATIVA INMERSIVA: estilo Apple. Columna fija + pasos que escalan al entrar. Ideal para la historia con scroll (fase 2). -->
+<section id="c" class="style active">
+  <!-- Contenido de ejemplo. Los recuadros punteados marcan dónde irán imágenes y enlaces reales. -->
+  <header class="hero">
+    <div class="aurora"></div>
+    <div class="hero-in">
+      <h1 class="reveal">Del código<br>a productos con IA.</h1>
+      <p class="lead reveal d1">Kener Avila · Full-Stack Developer & AI Engineer</p>
+      <div class="ctas reveal d2">
+        <a class="btn p" href="#">Descargar CV</a>
+        <a class="btn" href="#">GitHub</a>
+        <a class="btn" href="#">LinkedIn</a>
+      </div>
+    </div>
+    <span class="scroll-hint">Desliza ↓</span>
+  </header>
+
+  <!-- Barra de secciones: un clic salta a la sección; al bajar se marca la activa -->
+  <nav class="secnav" aria-label="Secciones">
+    <a href="#c-exp" class="on">Experiencia profesional</a>
+    <a href="#c-proj">Proyectos</a>
+    <a href="#c-edu">Estudios</a>
+    <a href="#c-cert">Certificaciones</a>
+  </nav>
+
+  <div class="wrap">
+    <!-- 1. EXPERIENCIA PROFESIONAL: columna fija + pasos que escalan -->
+    <section class="sec" id="c-exp">
+      <div class="story">
+        <div class="sticky">
+          <h2>Experiencia profesional</h2>
+          <p>Cada trabajo, con lo que construí y lo que aprendí.</p>
+          <div class="progress"><i></i></div>
+        </div>
+        <div>
+          <div class="step"><div class="media slot">Imagen del trabajo · pendiente<br>(16:9)</div>
+            <p class="when">2024 – hoy · Empresa pendiente</p><h3>Desarrollador Full-Stack</h3>
+            <p>APIs en NestJS y frontends en React para clientes reales.</p>
+            <div class="tags"><span>NestJS</span><span>React</span><span>PostgreSQL</span></div>
+            <p class="learn">Aprendí que medir en producción vale más que suponer.</p>
+            <div class="links"><a class="pending" href="#">Sitio de la empresa · pendiente</a></div></div>
+          <div class="step"><div class="media slot">Imagen del trabajo · pendiente<br>(16:9)</div>
+            <p class="when">2023 – 2024 · Empresa pendiente</p><h3>Desarrollador Backend Jr.</h3>
+            <p>Integraciones, colas de trabajo y reportes automatizados.</p>
+            <div class="tags"><span>Node.js</span><span>Docker</span></div>
+            <p class="learn">Aprendí a diseñar errores que se puedan depurar a las 2 a. m.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. PROYECTOS PERSONALES Y ACADÉMICOS: tarjetas con filtro -->
+    <section class="sec" id="c-proj">
+      <div class="sec-head reveal">
+        <h2>Proyectos personales y académicos</h2>
+        <p>El problema, mi aporte, el resultado y lo que aprendí. Cada uno abre su caso de estudio.</p>
+      </div>
+      <div class="filters reveal" role="group" aria-label="Filtrar proyectos">
+        <button class="on" data-f="all">Todos</button>
+        <button data-f="personal">Personales</button>
+        <button data-f="academico">Académicos</button>
+      </div>
+      <div class="pgrid">
+        <article class="pcard reveal" data-k="personal"><div class="slot">Captura del proyecto · pendiente (16:9)</div>
+          <div class="body"><span class="kind">Personal</span><h3>Asistente RAG</h3>
+            <p>Responde preguntas usando una base de conocimiento propia.</p>
+            <div class="tags"><span>Next.js</span><span>Python</span><span>Claude API</span></div>
+            <p class="learn">Aprendí a evaluar respuestas antes de cambiar prompts.</p>
+            <div class="links"><a class="pending" href="#">GitHub · pendiente</a><a class="pending" href="#">Demo · pendiente</a></div></div></article>
+        <article class="pcard reveal d1" data-k="academico"><div class="slot">Captura del proyecto · pendiente (16:9)</div>
+          <div class="body"><span class="kind">Académico</span><h3>Sistema de inventario</h3>
+            <p>Proyecto de curso: API REST + panel web para una tienda.</p>
+            <div class="tags"><span>Java</span><span>MySQL</span></div>
+            <p class="learn">Aprendí a modelar datos antes de escribir pantallas.</p>
+            <div class="links"><a class="pending" href="#">GitHub · pendiente</a></div></div></article>
+        <article class="pcard reveal" data-k="personal"><div class="slot">Captura del proyecto · pendiente (16:9)</div>
+          <div class="body"><span class="kind">Personal</span><h3>Este portafolio</h3>
+            <p>Next.js, Tailwind, bilingüe, con chat IA sobre mi carrera.</p>
+            <div class="tags"><span>Next.js</span><span>Tailwind</span><span>i18n</span></div>
+            <div class="links"><a class="pending" href="#">GitHub · pendiente</a></div></div></article>
+        <article class="pcard reveal d1" data-k="academico"><div class="slot">Captura del proyecto · pendiente (16:9)</div>
+          <div class="body"><span class="kind">Académico</span><h3>Proyecto de grado</h3>
+            <p>Título y descripción pendientes.</p>
+            <div class="links"><a class="pending" href="#">GitHub · pendiente</a></div></div></article>
+      </div>
+    </section>
+
+    <!-- 3. ESTUDIOS: línea de tiempo vertical -->
+    <section class="sec" id="c-edu">
+      <div class="sec-head reveal">
+        <h2>Estudios</h2>
+        <p>Formación académica y lo que me dejó cada etapa.</p>
+      </div>
+      <div class="timeline">
+        <div class="titem reveal"><div class="row"><div>
+          <p class="when">2019 – 2024 · Universidad pendiente</p><h3>Ingeniería de Sistemas</h3>
+          <p>Algoritmos, bases de datos, redes e ingeniería de software.</p>
+          <p class="learn">Aprendí a descomponer problemas grandes en piezas testeables.</p></div>
+          <div class="slot">Imagen o logo · pendiente</div></div></div>
+        <div class="titem reveal"><div class="row"><div>
+          <p class="when">Año pendiente · Institución pendiente</p><h3>Otro estudio</h3>
+          <p>Descripción pendiente.</p></div>
+          <div class="slot">Imagen o logo · pendiente</div></div></div>
+      </div>
+    </section>
+
+    <!-- 4. CERTIFICACIONES: agrupadas por emisor -->
+    <section class="sec" id="c-cert">
+      <div class="sec-head reveal">
+        <h2>Certificaciones</h2>
+        <p>Verificables en el sitio de cada emisor.</p>
+      </div>
+      <p class="issuer reveal">Cambridge English</p>
+      <div class="cgrid">
+        <article class="ccard reveal"><div class="slot">Certificado · pendiente<br>(datos personales tapados)</div>
+          <div class="body"><h3>Linguaskill · nivel pendiente</h3><p class="meta">Fecha pendiente</p>
+            <p class="learn">Aprendí a leer documentación técnica en inglés sin fricción.</p>
+            <div class="links"><a class="pending" href="#">Verificar · pendiente</a></div></div></article>
+      </div>
+      <p class="issuer reveal">Certiport</p>
+      <div class="cgrid">
+        <article class="ccard reveal"><div class="slot">Certificado · pendiente</div>
+          <div class="body"><h3>Certificación pendiente</h3><p class="meta">Fecha pendiente</p>
+            <div class="links"><a class="pending" href="#">Verificar · pendiente</a></div></div></article>
+      </div>
+      <p class="issuer reveal">Udemy</p>
+      <div class="cgrid">
+        <article class="ccard reveal"><div class="slot">Certificado · pendiente</div>
+          <div class="body"><h3>Curso pendiente</h3><p class="meta">Fecha pendiente · horas pendientes</p>
+            <div class="links"><a class="pending" href="#">Ver certificado · pendiente</a></div></div></article>
+        <article class="ccard reveal d1"><div class="slot">Certificado · pendiente</div>
+          <div class="body"><h3>Curso pendiente</h3><p class="meta">Fecha pendiente</p>
+            <div class="links"><a class="pending" href="#">Ver certificado · pendiente</a></div></div></article>
+        <article class="ccard reveal d2"><div class="slot">Certificado · pendiente</div>
+          <div class="body"><h3>Curso pendiente</h3><p class="meta">Fecha pendiente</p>
+            <div class="links"><a class="pending" href="#">Ver certificado · pendiente</a></div></div></article>
+      </div>
+    </section>
+    <footer>Kener Avila · contenido de ejemplo</footer>
+  </div>
+  <p class="ref">Elegido. La barra de secciones resuelve el riesgo de escaneo lento: un reclutador salta a lo que busca con un clic.</p>
+</section>
+
+<script>
+  // Cambio de estilo
+  const tabs = document.querySelectorAll('.switcher button');
+  tabs.forEach(b => b.addEventListener('click', () => {
+    tabs.forEach(t => t.setAttribute('aria-selected', t === b));
+    document.querySelectorAll('.style').forEach(s => s.classList.toggle('active', s.id === b.dataset.t));
+    window.scrollTo({ top: 0 });
+    observeAll();
+  }));
+
+  // Reveal al hacer scroll: una sola vez por elemento
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  function observeAll() {
+    document.querySelectorAll('.style.active .reveal:not(.in), .style.active .step:not(.in)').forEach(el => io.observe(el));
+  }
+  observeAll();
+
+  // Barra de progreso de cada historia (estilo C)
+  addEventListener('scroll', () => {
+    if (!document.getElementById('c').classList.contains('active')) return;
+    document.querySelectorAll('#c .story').forEach(story => {
+      const r = story.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, (innerHeight * .5 - r.top) / r.height));
+      story.querySelector('.progress i').style.width = (p * 100) + '%';
+    });
+  }, { passive: true });
+
+  // Marca en la barra la sección que está en pantalla
+  const navLinks = document.querySelectorAll('#c .secnav a');
+  const spy = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      navLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('#c .sec').forEach(s => spy.observe(s));
+  // Salto suave a la sección (sin depender del hash de la URL)
+  navLinks.forEach(a => a.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  }));
+
+  // Filtro de proyectos
+  document.querySelectorAll('#c .filters button').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('#c .filters button').forEach(x => x.classList.toggle('on', x === b));
+    document.querySelectorAll('#c .pcard').forEach(c => c.classList.toggle('hide', b.dataset.f !== 'all' && c.dataset.k !== b.dataset.f));
+  }));
+</script>
+</body>
+</html>
