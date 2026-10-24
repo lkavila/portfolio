@@ -1,0 +1,7 @@
+# Certificaciones. name e issuer no se traducen. Cada una necesita verifyUrl
+# (enlace de verificación del emisor) o file (archivo con datos personales tapados).
+# EJEMPLO: reemplazar con las certificaciones reales (T11).
+
+- name: Certificación de ejemplo
+  issuer: Emisor de ejemplo
+  date: 2025-06

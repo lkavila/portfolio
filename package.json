@@ -7,16 +7,20 @@
     "build": "velite build --strict --clean && next build",
     "start": "next start",
     "content": "velite build --strict",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "vitest run",
+    "e2e": "playwright test"
   },
   "dependencies": {
     "next": "16.4.2",
+    "next-intl": "4.14.9",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },
   "devDependencies": {
+    "@playwright/test": "1.64.1",
     "@tailwindcss/turbopack": "^4",
-    "@types/node": "^20",
+    "@types/node": "24.19.2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "concurrently": "10.0.6",
@@ -24,6 +28,7 @@
     "eslint-config-next": "16.4.2",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "velite": "0.4.0"
+    "velite": "0.4.0",
+    "vitest": "5.0.5"
   }
 }

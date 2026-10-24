@@ -1,0 +1,25 @@
+# Experiencia profesional. Cada texto traducible lleva sus dos versiones: { es, en }.
+# Fechas en formato YYYY-MM; un trabajo actual usa end: present.
+# EJEMPLO: reemplazar con la experiencia real (T11).
+
+- company: Empresa de ejemplo
+  role:
+    es: Desarrollador Full-Stack
+    en: Full-Stack Developer
+  location:
+    es: Remoto
+    en: Remote
+  start: 2024-02
+  end: present
+  summary:
+    es: Texto de ejemplo. Describe en una o dos frases el producto y tu aporte.
+    en: Placeholder text. Describe the product and your contribution in one or two sentences.
+  highlights:
+    es:
+      - Logro de ejemplo con un resultado medible.
+    en:
+      - Example achievement with a measurable result.
+  lesson:
+    es: Aprendizaje de ejemplo en una frase.
+    en: Example lesson in one sentence.
+  stack: [TypeScript, Next.js, PostgreSQL]

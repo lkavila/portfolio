@@ -1,0 +1,9 @@
+# Estudios. Textos traducibles en { es, en }; fechas YYYY-MM.
+# EJEMPLO: reemplazar con los estudios reales (T11).
+
+- institution: Universidad de ejemplo
+  degree:
+    es: Ingeniería de Sistemas
+    en: Systems Engineering
+  start: 2017-02
+  end: 2022-12
