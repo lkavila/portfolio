@@ -61,6 +61,16 @@
     "contact": "Contact",
     "email": "Email"
   },
+  "caseStudy": {
+    "back": "Back to projects",
+    "stack": "Tech stack",
+    "gallery": "Gallery"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "This address does not exist or has moved.",
+    "home": "Go to the home page"
+  },
   "languageSwitcher": {
     "label": "Change language",
     "es": "Español",

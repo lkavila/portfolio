@@ -434,7 +434,7 @@ Supuesto de esfuerzo: scaffolding ~100x, features ~30x, tests ~50x (humano ÷ CC
   - Surfaced by: D2; Section 4 casos borde; Section 7 presupuesto; Section 11 accesibilidad
   - Files: src/app/[locale]/page.tsx, src/app/[locale]/layout.tsx, src/components/sections/*.tsx, src/components/ui/*.tsx
   - Verify: E2E barra (clic, ancla directa, teclado, sección activa), filtro con `?filtro=`, sin JS, reduced motion, sin "pendiente" con VERCEL_ENV=production
-- [ ] **T5 (P1, human: ~3h / CC: ~10min)** — ui — Página de caso de estudio y 404 bilingüe
+- [x] **T5 (P1, human: ~3h / CC: ~10min)** — ui — Página de caso de estudio y 404 bilingüe
   - Surfaced by: Section 2 — slug/idioma inválido
   - Files: src/app/[locale]/proyectos/[slug]/page.tsx, src/app/[locale]/not-found.tsx
   - Verify: E2E slug válido renderiza; slug malo y `/fr` → 404 con enlace al inicio

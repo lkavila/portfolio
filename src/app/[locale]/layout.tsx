@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { locale as rootLocale } from 'next/root-params'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
+import { PathTracker } from '@/components/ui/BackLink'
 import { RevealObserver } from '@/components/ui/RevealObserver'
 import { routing } from '@/i18n/routing'
 import { siteUrl } from '@/lib/site'
@@ -62,6 +63,7 @@ export default async function LocaleLayout({ children }: LayoutProps<'/[locale]'
         <NextIntlClientProvider messages={null}>
           {children}
           <RevealObserver />
+          <PathTracker />
         </NextIntlClientProvider>
       </body>
     </html>

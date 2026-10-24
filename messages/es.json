@@ -61,6 +61,16 @@
     "contact": "Contacto",
     "email": "Email"
   },
+  "caseStudy": {
+    "back": "Volver a proyectos",
+    "stack": "Tecnologías",
+    "gallery": "Galería"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "La dirección no existe o cambió de lugar.",
+    "home": "Ir al inicio"
+  },
   "languageSwitcher": {
     "label": "Cambiar idioma",
     "es": "Español",
