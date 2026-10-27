@@ -799,7 +799,7 @@ Reemplazan a las tareas de la revisión CEO donde se indica.
   - Surfaced by: Eng D1, Eng D2, Section 2 #1 y #2
   - Files: velite.config.ts, content/experience.yaml, content/education.yaml, content/certifications.yaml, content/projects/*.es.mdx, content/projects/*.en.mdx, tests/content.test.ts, tests/fixtures/**
   - Verify: Vitest con fixtures inválidos hace fallar `velite build` con archivo + campo
-- [ ] **T7 (P1, human: ~30min / CC: ~5min)** — security — `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, `X-Content-Type-Options: nosniff`; sin CSP
+- [x] **T7 (P1, human: ~30min / CC: ~5min)** — security — `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, `X-Content-Type-Options: nosniff`; sin CSP
   - Surfaced by: Section 1 #1, Eng D3
   - Files: next.config.ts
   - Verify: E2E lee los 3 encabezados y confirma que no hay `Content-Security-Policy`
