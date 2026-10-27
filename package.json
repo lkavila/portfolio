@@ -10,7 +10,8 @@
     "lint": "eslint",
     "test": "vitest run",
     "e2e": "playwright test",
-    "lighthouse": "lhci autorun"
+    "lighthouse": "lhci autorun",
+    "pretest": "npm run content"
   },
   "dependencies": {
     "@vercel/analytics": "2.0.1",
