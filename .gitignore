@@ -57,3 +57,7 @@ next-env.d.ts
 
 # fixtures de contenido generados por los tests
 /tests/.tmp
+
+# lighthouse ci
+/.lighthouseci
+/lighthouse-report

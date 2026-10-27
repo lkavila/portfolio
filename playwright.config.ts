@@ -8,8 +8,9 @@ export default defineConfig({
   testDir: 'tests/e2e',
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  reporter: process.env.CI ? 'github' : 'list',
-  use: { baseURL },
+  // En CI: anotaciones en el PR + reporte HTML que el workflow sube si algo falla.
+  reporter: process.env.CI ? [['github'], ['html', { open: 'never' }]] : 'list',
+  use: { baseURL, trace: 'retain-on-failure' },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
     command: `npx next start -p ${port}`,
