@@ -1,10 +1,21 @@
 # Datos del hero y del pie de página. github, linkedin y email son opcionales:
 # si faltan se ven como "pendiente" en dev/preview y se ocultan en producción.
+# headline y metrics (máximo 3) dan la prueba de valor del hero.
 
 name: Kener Avila
 role:
   es: Full-Stack Developer & AI Engineer
   en: Full-Stack Developer & AI Engineer
+headline:
+  es: Ingeniero full-stack sénior con 6 años llevando a producción sistemas en Node.js, TypeScript, React y PostgreSQL, y pipelines con IA.
+  en: Senior full-stack engineer with 6 years shipping Node.js, TypeScript, React and PostgreSQL systems, and AI pipelines, to production.
+metrics:
+  - value: { es: 4 h → 30 min, en: 4 h → 30 min }
+    label: { es: digitalización con IA, en: digitization with AI }
+  - value: { es: ~90.000, en: ~90,000 }
+    label: { es: transacciones diarias, en: daily transactions }
+  - value: { es: < 100 ms, en: < 100 ms }
+    label: { es: latencia entre nodos, en: cross-node latency }
 github: https://github.com/lkavila
 linkedin: https://www.linkedin.com/in/luis-kener-avila-palacio
 email: kener1999avila@gmail.com

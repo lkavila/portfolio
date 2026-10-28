@@ -37,6 +37,9 @@ const profile = defineCollection({
   schema: s.object({
     name: text,
     role: localized(text),
+    // Hero (revisión de diseño 1A): una línea de posicionamiento y hasta 3 cifras de prueba.
+    headline: localized(text).optional(),
+    metrics: s.array(s.object({ value: localized(text), label: localized(text) })).max(3).default([]),
     // Campos reservados: si faltan, "pendiente" en dev/preview y ocultos en producción.
     github: url.optional(),
     linkedin: url.optional(),

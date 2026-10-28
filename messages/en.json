@@ -13,7 +13,7 @@
     "cv": "Download CV",
     "github": "GitHub",
     "linkedin": "LinkedIn",
-    "scrollHint": "Scroll"
+    "backToTop": "Back to top"
   },
   "sections": {
     "navLabel": "Sections",
@@ -32,7 +32,8 @@
   },
   "experience": {
     "image": "Job image",
-    "companySite": "Company website"
+    "companySite": "Company website",
+    "more": "Show {count} more"
   },
   "projects": {
     "filterLabel": "Filter projects",

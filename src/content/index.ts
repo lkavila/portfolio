@@ -14,7 +14,12 @@ export function compareByRecency(a: Dated, b: Dated): number {
 }
 
 export function getProfile(locale: Locale) {
-  return { ...profile, role: profile.role[locale] }
+  return {
+    ...profile,
+    role: profile.role[locale],
+    headline: profile.headline?.[locale],
+    metrics: profile.metrics.map((m) => ({ value: m.value[locale], label: m.label[locale] }))
+  }
 }
 
 /** Secciones con al menos un ítem: una sección vacía no se renderiza ni aparece en la barra. */

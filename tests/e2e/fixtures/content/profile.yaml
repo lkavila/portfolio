@@ -7,3 +7,11 @@ role:
   es: Full-Stack Developer & AI Engineer
   en: Full-Stack Developer & AI Engineer
 github: https://github.com/lkavila
+headline:
+  es: Línea de posicionamiento de prueba.
+  en: Test positioning line.
+metrics:
+  - value: { es: 4 h → 30 min, en: 4 h → 30 min }
+    label: { es: métrica uno, en: metric one }
+  - value: { es: ~90.000, en: ~90,000 }
+    label: { es: métrica dos, en: metric two }

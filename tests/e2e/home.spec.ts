@@ -146,3 +146,41 @@ test('en escritorio la columna de texto de cada trabajo es más ancha que su ima
   expect(columns.length).toBeGreaterThan(1)
   for (const [text, media] of columns) expect(text).toBeGreaterThan(media)
 })
+
+test.describe('revisión de diseño (1A, 1B, 1C)', () => {
+  test('el hero muestra posicionamiento, cifras y CV en la primera pantalla', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 })
+    await page.goto('/es')
+    const hero = page.locator('header#inicio')
+    await expect(hero.getByText('Línea de posicionamiento de prueba.')).toBeInViewport()
+    await expect(hero.locator('dd', { hasText: '4 h → 30 min' })).toBeInViewport()
+    await expect(hero.getByText('Descargar CV')).toBeInViewport()
+    // El primer trabajo asoma en la primera pantalla.
+    expect(await page.locator('#experiencia').evaluate((el) => el.getBoundingClientRect().top)).toBeLessThan(900)
+  })
+
+  test('cada trabajo destaca su primer logro y pliega lo que pasa de 3 bullets', async ({ page }) => {
+    await page.goto('/es')
+    const job = page.locator('#experiencia article', { hasText: 'Empresa con texto largo' })
+    // El logro principal va como párrafo destacado, no como bullet.
+    await expect(job.locator('p.text-strong', { hasText: 'Logro largo de ejemplo' })).toBeVisible()
+    await expect(job.locator('ul').first().locator('li')).toHaveCount(3)
+    const fold = job.locator('details')
+    await expect(fold.locator('summary')).toHaveText('Ver 1 más')
+    await expect(fold.getByText('Un quinto logro')).toBeHidden()
+    await fold.locator('summary').click()
+    await expect(fold.getByText('Un quinto logro')).toBeVisible()
+  })
+
+  test('la barra fija muestra nombre y CV solo cuando el hero sale de pantalla', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 })
+    await page.goto('/es')
+    const identity = page.locator('[data-sticky-identity]').first()
+    await expect(identity).toBeHidden()
+    await expect(identity).toHaveAttribute('inert', '')
+    await page.locator('#proyectos').scrollIntoViewIfNeeded()
+    await expect(identity).toBeVisible()
+    await expect(identity).not.toHaveAttribute('inert', '')
+    await expect(identity.getByRole('link', { name: /Kener Avila/ })).toBeVisible()
+  })
+})

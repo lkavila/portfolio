@@ -42,9 +42,11 @@
       - Otro logro largo de ejemplo con varias líneas de texto para estirar la fila del grid y comprobar que la imagen no se ensancha con ella.
       - Un tercer logro largo de ejemplo con varias líneas de texto para estirar la fila del grid y comprobar que la imagen no se ensancha con ella.
       - Un cuarto logro largo de ejemplo con varias líneas de texto para estirar la fila del grid y comprobar que la imagen no se ensancha con ella.
+      - Un quinto logro, que queda plegado bajo "Ver 1 más".
     en:
       - Long example achievement spanning several lines of text to stretch the grid row and check that the image does not widen with it.
       - Another long example achievement spanning several lines of text to stretch the grid row and check that the image does not widen with it.
       - A third long example achievement spanning several lines of text to stretch the grid row and check that the image does not widen with it.
       - A fourth long example achievement spanning several lines of text to stretch the grid row and check that the image does not widen with it.
+      - A fifth achievement, folded under "Show 1 more".
   stack: [TypeScript, React, Node.js, PostgreSQL, Redis, AWS, Docker, Kubernetes, GraphQL, gRPC]

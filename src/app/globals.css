@@ -52,6 +52,13 @@ html {
   }
 }
 
+/* Nombre y CV de la barra fija: ocultos (y sin ocupar espacio, para no recortar
+   las secciones en móvil) mientras el hero está a la vista. Sin JS (sin
+   data-shown) quedan visibles siempre. */
+.js [data-sticky-identity]:not([data-shown="true"]) {
+  display: none;
+}
+
 /* Lo que solo funciona con JS (filtro de proyectos) no se muestra sin JS. */
 html:not(.js) [data-requires-js] {
   display: none;

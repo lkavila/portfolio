@@ -57,7 +57,10 @@ for (const locale of ['es', 'en']) {
 
 test('el selector de idioma conserva la sección y recuerda la elección', async ({ page, context }) => {
   await page.goto('/es#proyectos')
-  await page.getByRole('link', { name: 'English' }).click()
+  const english = page.getByRole('link', { name: 'English' })
+  // Antes de hidratar, el enlace todavía no lleva el ancla de la sección.
+  await expect(english).toHaveAttribute('href', /#projects$/)
+  await english.click()
   await expect(page).toHaveURL(/\/en#projects$/)
   await expect(page.locator('html')).toHaveAttribute('lang', 'en')
 
