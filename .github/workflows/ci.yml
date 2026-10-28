@@ -34,14 +34,19 @@ jobs:
       - name: Unit tests (contenido, i18n)
         run: npm test
 
-      - name: Build
-        run: npm run build
+      # Los E2E corren sobre contenido de prueba fijo (tests/e2e/fixtures/content).
+      - name: Build (contenido de prueba)
+        run: npm run build:e2e
 
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
 
       - name: E2E
         run: npm run e2e
+
+      # Lighthouse mide el sitio con el contenido real.
+      - name: Build (contenido real)
+        run: npm run build
 
       # Mediana de 3 corridas por URL; falla si alguna categoría baja de 95.
       - name: Lighthouse

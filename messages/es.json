@@ -52,7 +52,8 @@
   "certifications": {
     "verify": "Verificar",
     "viewFile": "Ver certificado",
-    "verifyOrFile": "Enlace de verificación"
+    "verifyOrFile": "Enlace de verificación",
+    "code": "Código"
   },
   "lesson": {
     "label": "Lo que aprendí"

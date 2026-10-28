@@ -1,0 +1,50 @@
+# Contenido de prueba de los E2E (no es el contenido del sitio).
+# Experiencia profesional. Cada texto traducible lleva sus dos versiones: { es, en }.
+# Fechas en formato YYYY-MM; un trabajo actual usa end: present.
+# EJEMPLO: reemplazar con la experiencia real (T11).
+
+- company: Empresa de ejemplo
+  role:
+    es: Desarrollador Full-Stack
+    en: Full-Stack Developer
+  location:
+    es: Remoto
+    en: Remote
+  start: 2024-02
+  end: present
+  summary:
+    es: Texto de ejemplo. Describe en una o dos frases el producto y tu aporte.
+    en: Placeholder text. Describe the product and your contribution in one or two sentences.
+  highlights:
+    es:
+      - Logro de ejemplo con un resultado medible.
+    en:
+      - Example achievement with a measurable result.
+  lesson:
+    es: Aprendizaje de ejemplo en una frase.
+    en: Example lesson in one sentence.
+  stack: [TypeScript, Next.js, PostgreSQL]
+
+# Ítem con texto largo: reproduce el desbordamiento de la columna de texto
+# que solo aparecía con contenido real (ver home.spec.ts, "sin scroll horizontal").
+- company: Empresa con texto largo
+  role:
+    es: Ingeniero de Software Sénior con un título de cargo bastante largo
+    en: Senior Software Engineer with a fairly long job title
+  start: 2021-01
+  end: 2023-12
+  summary:
+    es: Resumen largo de ejemplo. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    en: Long example summary. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  highlights:
+    es:
+      - Logro largo de ejemplo con varias líneas de texto para estirar la fila del grid y comprobar que la imagen no se ensancha con ella.
+      - Otro logro largo de ejemplo con varias líneas de texto para estirar la fila del grid y comprobar que la imagen no se ensancha con ella.
+      - Un tercer logro largo de ejemplo con varias líneas de texto para estirar la fila del grid y comprobar que la imagen no se ensancha con ella.
+      - Un cuarto logro largo de ejemplo con varias líneas de texto para estirar la fila del grid y comprobar que la imagen no se ensancha con ella.
+    en:
+      - Long example achievement spanning several lines of text to stretch the grid row and check that the image does not widen with it.
+      - Another long example achievement spanning several lines of text to stretch the grid row and check that the image does not widen with it.
+      - A third long example achievement spanning several lines of text to stretch the grid row and check that the image does not widen with it.
+      - A fourth long example achievement spanning several lines of text to stretch the grid row and check that the image does not widen with it.
+  stack: [TypeScript, React, Node.js, PostgreSQL, Redis, AWS, Docker, Kubernetes, GraphQL, gRPC]

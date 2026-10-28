@@ -1,9 +1,9 @@
-# Estudios. Textos traducibles en { es, en }; fechas YYYY-MM.
-# EJEMPLO: reemplazar con los estudios reales (T11).
+# Estudios. Textos traducibles en { es, en }; fechas YYYY-MM o "YYYY" (entre comillas).
+# Opcionales: description, lesson, url, image { src, alt: { es, en } }.
 
-- institution: Universidad de ejemplo
+- institution: Universidad del Norte
   degree:
-    es: Ingeniería de Sistemas
-    en: Systems Engineering
-  start: 2017-02
-  end: 2022-12
+    es: Ingeniería de Sistemas y Computación
+    en: Bachelor's Degree in Systems and Computing Engineering
+  start: '2017'
+  end: '2022'

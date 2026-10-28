@@ -1,0 +1,9 @@
+# Contenido de prueba de los E2E (no es el contenido del sitio).
+# Datos del hero y del pie de página. github, linkedin y email son opcionales:
+# si faltan se ven como "pendiente" en dev/preview y se ocultan en producción.
+
+name: Kener Avila
+role:
+  es: Full-Stack Developer & AI Engineer
+  en: Full-Stack Developer & AI Engineer
+github: https://github.com/lkavila

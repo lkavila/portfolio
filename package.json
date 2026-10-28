@@ -11,7 +11,8 @@
     "test": "vitest run",
     "e2e": "playwright test",
     "lighthouse": "lhci autorun",
-    "pretest": "npm run content"
+    "pretest": "npm run content",
+    "build:e2e": "velite build --strict --clean --config velite.e2e.config.ts && next build"
   },
   "dependencies": {
     "@vercel/analytics": "2.0.1",

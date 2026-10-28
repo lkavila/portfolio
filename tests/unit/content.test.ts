@@ -168,6 +168,20 @@ describe('velite build', () => {
     expect(result.output).toMatch(/education\.yaml[\s\S]*usa el formato YYYY-MM[^\n]*\[0\]\.start/)
     expect(result.output).toMatch(/experience\.yaml[\s\S]*end no puede ser anterior a start[^\n]*\[0\]\.end/)
   })
+
+  it.concurrent('acepta años sueltos entre comillas y explica el error si faltan las comillas', async () => {
+    const files = await validFiles()
+    files['education.yaml'] = String(files['education.yaml'])
+      .replace('start: 2017-02', "start: '2017'")
+      .replace('end: 2022-12', "end: '2022'")
+    const ok = await build('year-only', files)
+    expect(ok.ok, ok.output).toBe(true)
+
+    files['education.yaml'] = String(files['education.yaml']).replace("start: '2017'", 'start: 2017')
+    const bad = await build('year-unquoted', files)
+    expect(bad.ok).toBe(false)
+    expect(bad.output).toMatch(/entre comillas[^\n]*\[0\]\.start/)
+  })
 })
 
 describe('reglas entre documentos', () => {

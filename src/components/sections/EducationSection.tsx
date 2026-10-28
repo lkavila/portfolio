@@ -23,7 +23,7 @@ export async function EducationSection() {
             data-reveal
             className="relative pb-12 before:absolute before:top-1.5 before:-left-[33px] before:size-3.5 before:rounded-full before:border-2 before:border-accent-2 before:bg-bg"
           >
-            <div className="grid items-start gap-6 md:grid-cols-[1fr_220px]">
+            <div className="grid items-start gap-6 md:grid-cols-[minmax(0,1fr)_220px]">
               <div>
                 <p className="text-sm text-accent">
                   {formatRange(item.start, item.end, locale, t('common.present'))} · {item.institution}
