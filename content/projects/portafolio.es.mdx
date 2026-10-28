@@ -1,19 +1,37 @@
 ---
-title: Portafolio bilingüe
-summary: Ejemplo de ficha de proyecto. Este mismo sitio, con contenido tipado y validado en el build.
+title: Este portafolio
+summary: Portafolio bilingüe con contenido tipado y validado en el build, páginas estáticas en el CDN y CI que bloquea cualquier regresión de calidad.
 kind: personal
 date: 2026-10
-stack: [Next.js, TypeScript, Tailwind CSS, Velite]
-lesson: Aprendizaje de ejemplo en una frase.
+stack: [Next.js 16, TypeScript, Tailwind CSS v4, Velite, next-intl, Playwright, Vitest, Vercel]
+lesson: Un test que pasa en mi máquina no prueba nada; la prueba real es un clon limpio en CI.
+github: https://github.com/lkavila/portfolio
 images:
   - src: ./portafolio/cover.png
-    alt: Portada de ejemplo del proyecto
+    alt: Portada del portafolio con el nombre Kener Avila y la barra de secciones
+  - src: ./portafolio/projects.png
+    alt: Sección de proyectos con tarjetas y filtro por tipo
 ---
 
 ## Problema
 
-Texto de ejemplo: qué problema resolvía el proyecto.
+Un reclutador dedica pocos minutos a cada portafolio, a veces en inglés y a veces en español. Necesitaba un sitio que cargara al instante, se leyera en el idioma de quien lo visita y nunca mostrara un enlace roto o una sección a medio llenar.
 
 ## Aporte
 
-Texto de ejemplo: qué hiciste tú.
+- **Contenido como datos tipados.** La experiencia, los estudios y las certificaciones viven en YAML con sus dos idiomas, y los proyectos en MDX. Velite los valida con esquemas Zod en el build: si falta una traducción, un `alt`, una imagen o una URL es inválida, el build falla con el archivo y el campo exactos.
+- **Bilingüe de verdad.** La portada elige el idioma del navegador, recuerda la elección manual y el selector de idioma conserva la sección en la que estás.
+- **Estático y rápido.** Todas las páginas se prerenderizan y se sirven desde el CDN de Vercel, con imágenes optimizadas y animaciones que respetan `prefers-reduced-motion`.
+- **Calidad bloqueante.** GitHub Actions corre lint, pruebas unitarias, pruebas end-to-end con Playwright y Lighthouse en cada PR; nada se integra a `main` si falla.
+
+## Resultado
+
+- Lighthouse en móvil (mediana de 3 corridas): **97** en rendimiento y **100** en accesibilidad, buenas prácticas y SEO.
+- Más de 40 pruebas automáticas, incluido el comportamiento sin JavaScript y con movimiento reducido.
+- Ningún campo pendiente llega a producción: lo comprueba un job de CI dedicado.
+
+## Aprendizajes
+
+1. **Validar en el build convierte errores silenciosos en errores ruidosos.** Un tipeo en una URL deja de ser un enlace roto frente a un reclutador y pasa a ser un build en rojo.
+2. **Un 404 no siempre responde 404.** Con Cache Components de Next.js 16, si la página ya empezó a enviarse, `notFound()` deja el estado en 200. Los códigos de estado hay que probarlos, no suponerlos.
+3. **Pasar en local no prueba nada.** Una prueba dependía de contenido generado que en mi máquina ya existía; en un clon limpio de CI fallaba. Desde entonces verifico cada cambio desde cero.

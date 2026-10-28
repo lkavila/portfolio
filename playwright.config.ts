@@ -3,7 +3,8 @@ import { defineConfig, devices } from '@playwright/test'
 const port = 3100
 const baseURL = `http://localhost:${port}`
 
-// Corre contra el build de producción: `npm run build` antes de `npm run e2e`.
+// Corre contra un build con el contenido de prueba: `npm run build:e2e` antes de
+// `npm run e2e`. El job de producción usa `npm run build` (contenido real).
 export default defineConfig({
   testDir: 'tests/e2e',
   forbidOnly: !!process.env.CI,

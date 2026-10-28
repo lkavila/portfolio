@@ -1,7 +1,25 @@
 # Certificaciones. name e issuer no se traducen. Cada una necesita verifyUrl
 # (enlace de verificación del emisor) o file (archivo con datos personales tapados).
-# EJEMPLO: reemplazar con las certificaciones reales (T11).
+# verifyCode: código que pide la página de verificación del emisor (opcional).
+# Los originales viven en /private, fuera del repo.
 
-- name: Certificación de ejemplo
-  issuer: Emisor de ejemplo
-  date: 2025-06
+- name: Generative AI Foundations
+  issuer: Pearson · Certiport
+  date: 2026-04
+  verifyUrl: https://verify.certiport.com
+  verifyCode: waVhA-H9ob
+
+# El certificado incluye fecha de nacimiento, documento y foto: no se publica el PDF.
+- name: Linguaskill · CEFR B2
+  issuer: Cambridge University Press & Assessment
+  date: 2026-10
+
+- name: Build a Real Time Chat App With React + NestJS & GraphQL
+  issuer: Udemy
+  date: 2026-01
+  verifyUrl: https://ude.my/UC-6967f998-fdb2-452c-8cf5-113878ad46f1
+
+- name: 'NestJS: Microservicios con NestJS, AWS, Docker Profesional'
+  issuer: Udemy
+  date: 2025-11
+  verifyUrl: https://ude.my/UC-b3d936a8-238d-4dff-af9b-9b3af2a715ab

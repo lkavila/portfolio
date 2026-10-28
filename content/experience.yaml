@@ -1,25 +1,93 @@
 # Experiencia profesional. Cada texto traducible lleva sus dos versiones: { es, en }.
-# Fechas en formato YYYY-MM; un trabajo actual usa end: present.
-# EJEMPLO: reemplazar con la experiencia real (T11).
+# Fechas en formato YYYY-MM (o "YYYY" entre comillas); un trabajo actual usa end: present.
+# Opcionales: location, lesson (lo que aprendí), url, image { src, alt: { es, en } }.
 
-- company: Empresa de ejemplo
+- company: GlobalLogic
   role:
-    es: Desarrollador Full-Stack
-    en: Full-Stack Developer
-  location:
-    es: Remoto
-    en: Remote
-  start: 2024-02
-  end: present
+    es: Ingeniero de Software Sénior
+    en: Senior Software Engineer
+  start: 2025-06
+  end: 2026-06
   summary:
-    es: Texto de ejemplo. Describe en una o dos frases el producto y tu aporte.
-    en: Placeholder text. Describe the product and your contribution in one or two sentences.
+    es: Contribuidor individual sénior en un equipo de producto B2B de 14 ingenieros, en una consultora global de ingeniería digital. Asumí de forma interina un subgrupo y desbloqueé al equipo con code review, pair programming y resolución de problemas en primera línea.
+    en: Senior individual contributor on a 14-engineer B2B product team at a global digital engineering consultancy. Took interim ownership of a subgroup, unblocking engineers through code review, pair programming and hands-on troubleshooting.
   highlights:
     es:
-      - Logro de ejemplo con un resultado medible.
+      - Reemplacé la digitalización manual de documentos escritos a mano por un pipeline con IA (Python, OpenCV, Anthropic Message Batches API), construido en solitario del prototipo a producción. Bajó de 4 horas a 30 minutos, incluida la revisión humana, con un 50 % menos de costo en tokens.
+      - Construí microservicios en producción con Node.js y Python comunicados por gRPC con contratos en Protocol Buffers, y reduje cerca de un 50 % la carga de red frente al enfoque anterior.
+      - Desarrollé un módulo de pagos multiplataforma (Payabli) para web y móvil en React con SSO, con idempotencia para que reintentos o envíos duplicados nunca cobraran dos veces a ninguno de las decenas de miles de usuarios.
+      - Optimicé los planes de consulta y los índices de los ledgers en tiempo real en PostgreSQL para que siguieran correctos y rápidos con escrituras concurrentes, a unas 90.000 transacciones diarias.
+      - Diseñé el esquema en PostgreSQL para incorporar una base de usuarios migrada desde NoSQL sin perder integridad de datos, y mantuve los pipelines de CI/CD y los despliegues en AWS ECS.
     en:
-      - Example achievement with a measurable result.
-  lesson:
-    es: Aprendizaje de ejemplo en una frase.
-    en: Example lesson in one sentence.
-  stack: [TypeScript, Next.js, PostgreSQL]
+      - Replaced a manual handwritten-document digitization process with an AI pipeline (Python, OpenCV, Anthropic Message Batches API), built solo from prototype to production. It went from 4 hours to 30 minutes including human review, at 50% lower token cost.
+      - Built production microservices in Node.js and Python communicating over gRPC with Protocol Buffers contracts, cutting network overhead by about 50% versus the previous approach.
+      - Engineered a cross-platform payment module (Payabli) for React web and mobile with SSO, enforcing idempotency so retries and duplicate submissions could never double-charge any of tens of thousands of users.
+      - Reworked query plans and indexing behind real-time PostgreSQL ledgers so they stayed correct and fast under concurrent writes at about 90,000 daily transactions.
+      - Designed the PostgreSQL schema to onboard a user base migrated from NoSQL while preserving data integrity, and maintained the CI/CD pipelines and deployments to AWS ECS.
+  stack: [Node.js, TypeScript, React, Python, gRPC, PostgreSQL, AWS]
+
+- company: IPUC
+  role:
+    es: Ingeniero Full Stack (medio tiempo)
+    en: Full Stack Engineer (part-time)
+  start: 2025-01
+  end: 2026-05
+  summary:
+    es: Único ingeniero de una plataforma de inscripciones que reemplazó un proceso manual en papel, desde el frontend en React hasta el backend serverless en Vercel y AWS.
+    en: Sole engineer on a registration platform that replaced a manual paper process, from the React frontend to the serverless backend on Vercel and AWS.
+  highlights:
+    es:
+      - Construí la app en React con formularios dinámicos de captura de datos, autenticación por roles y API routes de Next.js sobre MongoDB, dejando la inscripción en un solo clic.
+      - Implementé control de acceso por roles y exportación a Excel y PDF, cubriendo todo el flujo desde la captura de datos hasta los reportes.
+      - Desarrollé el servicio de notificaciones como una AWS Lambda en TypeScript alimentada por SQS con dead-letter queue, idempotencia en DynamoDB, SES/SNS y EventBridge, para que picos de tráfico, reintentos o fallas de terceros nunca bloquearan ni duplicaran una inscripción.
+    en:
+      - Built the React app with dynamic data-capture forms, role-based authentication and Next.js API routes over MongoDB, reducing sign-up to a single click.
+      - Implemented role-based access control and Excel and PDF exports, covering the full workflow from data capture to reporting.
+      - Developed the notification service as a TypeScript AWS Lambda fed by SQS with a dead-letter queue, DynamoDB-backed idempotency, SES/SNS and EventBridge, so traffic spikes, retries and third-party failures could never block or duplicate a sign-up.
+  stack: [TypeScript, React, Next.js, Node.js, MongoDB, AWS Lambda, SQS, EventBridge, Cypress]
+
+- company: Lap Technologies S.A.
+  role:
+    es: Desarrollador de Software
+    en: Software Developer
+  start: 2022-04
+  end: 2025-06
+  summary:
+    es: Desarrollo full stack de productos en tiempo real, entregados como una PWA mobile-first. Trabajé en la gestión distribuida de tickets, el rastreo de ubicación de flotas y equipos, y el streaming en vivo.
+    en: Full-stack work on real-time products shipped as a mobile-first PWA. Worked on distributed ticket management, location tracking for vehicle fleets and equipment, and live streaming.
+  highlights:
+    es:
+      - Diseñé en solitario un adaptador sobre Redis Streams y un transporte WebSocket nativo para que clientes conectados a distintas instancias del servidor compartieran los eventos de tickets, con latencia de extremo a extremo menor a 100 ms.
+      - Migré de forma incremental el código de React y Node.js a TypeScript, agregando primero pruebas end-to-end con Cypress para que cada paso tuviera una red contra regresiones.
+      - Bajé los errores en producción de 6–7 incidentes diarios a menos de uno, reforzando el manejo de errores e incorporando monitoreo y visibilidad de la salud de la aplicación.
+      - Reduje cerca de un 40 % el gasto en Google Maps y APIs de GCP rediseñando la lógica de ubicación y rastreo de rutas, sin cambios en el comportamiento del producto.
+      - Lideré la integración de streaming en vivo en React (reproducción HLS, estado del stream y sincronización de eventos en tiempo real) y publiqué la app como PWA instalable con Service Workers.
+    en:
+      - Architected, as sole engineer, a Redis Streams adapter and native WebSocket transport so clients connected to different server instances shared ticket events, keeping end-to-end latency under 100 ms.
+      - Migrated the React and Node.js codebase to TypeScript incrementally, adding Cypress end-to-end coverage first so every step landed against a regression net.
+      - Brought production errors down from 6–7 incidents a day to under one by hardening error handling and adding monitoring and application health visibility.
+      - Cut Google Maps and GCP API spend by about 40% by redesigning the location and route-tracking logic, with no change in product behavior.
+      - Led the React integration of live streaming (HLS playback, stream state management and real-time event sync) and shipped the app as an installable PWA with Service Workers.
+  stack: [TypeScript, React, Redux, Node.js, NestJS, Express, WebSockets, Redis, MongoDB, AWS, Cypress]
+
+- company: NativApps Inc
+  role:
+    es: Desarrollador Full Stack
+    en: Full Stack Developer
+  start: 2020-09
+  end: 2022-07
+  summary:
+    es: Desarrollo full stack con foco en el frontend, con funcionalidades en React sobre servicios en Node.js y PostgreSQL.
+    en: Frontend-heavy full-stack development of React features over Node.js and PostgreSQL services.
+  highlights:
+    es:
+      - Convertí la interfaz recurrente en un conjunto de componentes reutilizables sobre el que se construyó el resto del proyecto.
+      - Diagnostiqué defectos de producción de punta a punta, entre React, la API en Node y el esquema de PostgreSQL, corrigiendo causas raíz en lugar de síntomas.
+      - Introduje por iniciativa propia las pruebas end-to-end con Cypress, que luego se volvieron el estándar del equipo.
+      - Fui mentor de desarrolladores junior y estudiantes en la plataforma NextU, en React, Node.js, PHP, HTML/CSS y SQL.
+    en:
+      - Factored recurring UI into a reusable component set that the rest of the project built on.
+      - Diagnosed production defects end to end across React, the Node API and the PostgreSQL schema, fixing root causes instead of symptoms.
+      - Introduced Cypress end-to-end testing on my own initiative; it later became the team standard.
+      - Mentored junior developers and students on the NextU platform in React, Node.js, PHP, HTML/CSS and SQL.
+  stack: [TypeScript, React, Node.js, Express, PostgreSQL, Cypress]

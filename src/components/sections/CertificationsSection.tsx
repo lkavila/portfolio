@@ -29,6 +29,12 @@ export async function CertificationsSection() {
                   <h4 className="mb-1 text-[17px] font-semibold text-balance">{cert.name}</h4>
                   <p className="text-[13px] text-subtle">
                     <time dateTime={cert.date}>{formatMonth(cert.date, locale)}</time>
+                    {cert.verifyCode && (
+                      <>
+                        {' · '}
+                        {t('certifications.code')}: <span className="font-mono text-strong">{cert.verifyCode}</span>
+                      </>
+                    )}
                   </p>
                   <div className="mt-3.5 flex flex-wrap gap-2">
                     {cert.verifyUrl || cert.file ? (

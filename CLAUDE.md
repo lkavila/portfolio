@@ -7,6 +7,7 @@ Portafolio de Kener Avila (Next.js 16 + Tailwind v4 + Velite, deploy en Vercel).
 - `npm run dev`: Velite en modo watch + `next dev`.
 - `npm run build`: `velite build --strict --clean && next build`. Un error de esquema en `content/` hace fallar el build.
 - `npm run content`: solo valida y genera el contenido en `.velite/` (importable como `#site/content`).
+- `npm run build:e2e` y luego `npm run e2e`: los E2E corren sobre contenido de prueba fijo (`tests/e2e/fixtures/content`), no sobre `content/`. `npm test` genera el contenido antes de correr Vitest.
 
 ## Skill routing
 

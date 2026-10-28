@@ -1,19 +1,37 @@
 ---
-title: Bilingual portfolio
-summary: Example project card. This very site, with typed content validated at build time.
+title: This portfolio
+summary: Bilingual portfolio with typed content validated at build time, static pages on the CDN and CI that blocks any quality regression.
 kind: personal
 date: 2026-10
-stack: [Next.js, TypeScript, Tailwind CSS, Velite]
-lesson: Example lesson in one sentence.
+stack: [Next.js 16, TypeScript, Tailwind CSS v4, Velite, next-intl, Playwright, Vitest, Vercel]
+lesson: A test that passes on my machine proves nothing; the real proof is a clean checkout in CI.
+github: https://github.com/lkavila/portfolio
 images:
   - src: ./portafolio/cover.png
-    alt: Example project cover
+    alt: Portfolio home with the name Kener Avila and the section bar
+  - src: ./portafolio/projects.png
+    alt: Projects section with cards and a filter by type
 ---
 
 ## Problem
 
-Placeholder text: what problem the project solved.
+A recruiter spends a few minutes on each portfolio, sometimes in English and sometimes in Spanish. I needed a site that loads instantly, reads in the visitor's language and never shows a broken link or a half-filled section.
 
 ## Contribution
 
-Placeholder text: what you did.
+- **Content as typed data.** Experience, education and certifications live in YAML with both languages, and projects in MDX. Velite validates them with Zod schemas at build time: a missing translation, `alt` text or image, or an invalid URL fails the build with the exact file and field.
+- **Truly bilingual.** The home page picks the browser's language, remembers a manual choice, and the language switcher keeps the section you are reading.
+- **Static and fast.** Every page is prerendered and served from Vercel's CDN, with optimized images and animations that respect `prefers-reduced-motion`.
+- **Blocking quality checks.** GitHub Actions runs lint, unit tests, Playwright end-to-end tests and Lighthouse on every PR; nothing reaches `main` if they fail.
+
+## Result
+
+- Mobile Lighthouse (median of 3 runs): **97** performance and **100** accessibility, best practices and SEO.
+- More than 40 automated tests, including behavior without JavaScript and with reduced motion.
+- No pending field reaches production: a dedicated CI job checks it.
+
+## What I learned
+
+1. **Build-time validation turns silent errors into loud ones.** A typo in a URL stops being a broken link in front of a recruiter and becomes a red build.
+2. **A 404 does not always respond 404.** With Next.js 16 Cache Components, once the page has started streaming, `notFound()` leaves the status at 200. Status codes must be tested, not assumed.
+3. **Passing locally proves nothing.** One test depended on generated content that already existed on my machine; on a clean CI checkout it failed. Since then I verify every change from scratch.

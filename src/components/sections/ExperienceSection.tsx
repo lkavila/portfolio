@@ -18,7 +18,7 @@ export async function ExperienceSection() {
       <ol className="mt-12 space-y-16">
         {items.map((item) => (
           <li key={`${item.company}-${item.start}`} data-reveal>
-            <article className="grid gap-6 lg:grid-cols-[1.2fr_1fr] lg:gap-10">
+            <article className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-10">
               <div>
                 <p className="text-sm text-accent">
                   {formatRange(item.start, item.end, locale, t('common.present'))} · {item.company}

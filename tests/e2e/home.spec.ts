@@ -120,3 +120,29 @@ test('los enlaces externos abren en otra pestaña con rel seguro', async ({ page
   expect(rels.length).toBeGreaterThan(0)
   for (const rel of rels) expect(rel).toBe('noopener noreferrer')
 })
+
+for (const viewport of [
+  { width: 1280, height: 800 },
+  { width: 390, height: 844 }
+]) {
+  test(`sin scroll horizontal a ${viewport.width}px`, async ({ page }) => {
+    await page.setViewportSize(viewport)
+    for (const path of ['/es', '/en/proyectos/portafolio']) {
+      await page.goto(path)
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
+      expect(overflow, path).toBeLessThanOrEqual(0)
+    }
+  })
+}
+
+test('en escritorio la columna de texto de cada trabajo es más ancha que su imagen', async ({ page }) => {
+  // Regresión: con texto largo, la imagen 16:9 se estiraba al alto de la fila y
+  // se ensanchaba hasta aplastar el texto.
+  await page.setViewportSize({ width: 1280, height: 800 })
+  await page.goto('/es')
+  const columns = await page
+    .locator('#experiencia article')
+    .evaluateAll((articles) => articles.map((a) => [...a.children].map((c) => Math.round(c.getBoundingClientRect().width))))
+  expect(columns.length).toBeGreaterThan(1)
+  for (const [text, media] of columns) expect(text).toBeGreaterThan(media)
+})

@@ -12,8 +12,13 @@ const localized = <T extends Parameters<typeof s.object>[0][string]>(schema: T) 
 
 const text = s.string().trim().min(1)
 
-/** Mes en formato YYYY-MM (YAML convertiría YYYY-MM-DD en Date). */
-const month = s.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/, 'usa el formato YYYY-MM')
+/**
+ * Mes en formato YYYY-MM, o solo YYYY cuando no se conoce el mes
+ * (YAML convertiría YYYY-MM-DD en Date). Un año suelto debe ir entre comillas.
+ */
+const month = s
+  .string({ invalid_type_error: 'usa el formato YYYY-MM o "YYYY" (entre comillas)' })
+  .regex(/^\d{4}(-(0[1-9]|1[0-2]))?$/, 'usa el formato YYYY-MM o "YYYY"')
 
 const url = s
   .string()
@@ -91,6 +96,8 @@ const certifications = defineCollection({
     issuer: text,
     date: month,
     verifyUrl: url.optional(),
+    // Código que el emisor pide en su página de verificación (ej. Certiport).
+    verifyCode: text.optional(),
     // Archivo con datos personales tapados; los originales viven en /private (fuera del repo).
     file: s.file().optional()
   })
